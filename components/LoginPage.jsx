@@ -1,97 +1,84 @@
 'use client'
 
 import { useState } from 'react'
-import { Eye, EyeOff, Lock, User } from 'lucide-react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
-export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false)
+export default function LoginSection() {
+  const [form, setForm] = useState({ email: '', password: '' })
 
   return (
-    <section className="min-h-screen bg-white text-zinc-800 py-28 px-6 md:px-12">
-      <div className="max-w-4xl mx-auto grid lg:grid-cols-2 items-center gap-20">
-        
-        {/* Welcome Message */}
-        <div className="space-y-6">
-          <h2 className="text-4xl font-semibold font-serif tracking-tight">
-            Welcome back.
-          </h2>
-          <p className="text-zinc-500 text-lg max-w-md">
-            Enter your details to access your curated intimacy experience. All information is encrypted and confidential.
-          </p>
+    <section className="bg-white min-h-screen px-6 py-32 md:px-20 text-zinc-900">
+      <div className="max-w-md mx-auto space-y-10">
 
-          <div className="flex items-center gap-3 text-sm text-zinc-400">
-            <Lock size={16} className="text-zinc-500" />
-            Encrypted & Private Login System
-          </div>
-        </div>
-
-        {/* Login Form */}
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="bg-zinc-50 border border-zinc-200 rounded-2xl p-10 shadow-lg w-full space-y-6"
+        {/* 🔐 Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
         >
-          <div className="space-y-1">
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email Address
-            </label>
-            <div className="relative">
-              <input
-                type="email"
-                id="email"
-                placeholder="you@example.com"
-                className="w-full px-4 py-3 pr-10 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-zinc-400 focus:outline-none"
-                required
-              />
-              <User className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
-            </div>
-          </div>
+          <h1 className="text-3xl md:text-4xl font-serif text-zinc-900">
+            Selamat Datang Kembali
+          </h1>
+          <p className="mt-3 text-slate-600 text-sm">
+            Masuk untuk melanjutkan eksplorasi personal Anda.
+          </p>
+        </motion.div>
 
-          <div className="space-y-1">
-            <label htmlFor="password" className="block text-sm font-medium">
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                placeholder="••••••••"
-                className="w-full px-4 py-3 pr-10 border border-zinc-300 rounded-xl focus:ring-2 focus:ring-zinc-400 focus:outline-none"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-          </div>
+        {/* 🔐 Form Login */}
+        <motion.form
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="bg-blue-50 p-8 rounded-2xl border border-blue-100 shadow-md space-y-5"
+        >
+          <input
+            type="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          />
 
-          <div className="flex justify-between items-center text-sm">
+          <input
+            type="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          />
+
+          <div className="flex justify-between text-sm text-slate-500">
             <label className="flex items-center gap-2">
-              <input type="checkbox" className="accent-zinc-600" />
-              Remember me
+              <input type="checkbox" className="accent-blue-600" />
+              Ingat saya
             </label>
-            <a href="#" className="text-zinc-600 hover:underline">
-              Forgot password?
-            </a>
+            <Link href="/forgot" className="text-blue-600 hover:underline">
+              Lupa Password?
+            </Link>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 bg-zinc-900 text-white rounded-xl font-semibold hover:bg-zinc-800 transition shadow-lg"
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition active:scale-[0.98] shadow-md"
           >
-            Sign In
+            Masuk
           </button>
+        </motion.form>
 
-          <p className="text-sm text-center text-zinc-500">
-            Don’t have an account?{' '}
-            <a href="#" className="text-zinc-600 hover:underline font-medium">
-              Register here
-            </a>
-          </p>
-        </form>
+        {/* 🧭 Daftar Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="text-center text-sm text-slate-500"
+        >
+          Belum punya akun?{' '}
+          <Link href="/register" className="text-blue-600 hover:underline">
+            Daftar sekarang →
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

@@ -2,96 +2,81 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
-const products = [
+const featured = [
   {
-    name: 'Velvet Orbit',
-    price: '$149',
-    subtitle: 'Multi-sensory wand for intimate journeys.',
-    image: '/images/p4.jpg',
-    badge: 'Bestseller',
+    title: 'Velvet Pulse',
+    desc: 'Stimulator dengan 10 mode getaran, lembut dan powerful. Cocok untuk pemula & pasangan.',
+    image: '/products/velvet-pulse.jpg',
+    href: '/products/velvet-pulse',
   },
   {
-    name: 'SilkGlide Serum',
-    price: '$42',
-    subtitle: 'Water-based luxury, feather-light glide.',
-    image: '/images/p3.jpg',
-    badge: 'Limited Edition',
+    title: 'Sora Essentials Kit',
+    desc: 'Paket eksplorasi awal dengan pelumas, massage oil, dan toy cleaner. Praktis & stylish.',
+    image: '/products/sora-kit.jpg',
+    href: '/products/sora-kit',
   },
   {
-    name: 'PulseSync Duo',
-    price: '$199',
-    subtitle: 'App-enabled toy for couples. Together, apart.',
-    image: '/images/p5.jpg',
-    badge: 'Smart Tech',
-  },
-  {
-    name: 'Noir Lace Set',
-    price: '$89',
-    subtitle: 'Sensual lingerie in timeless noir.',
-    image: '/images/p7.jpg',
-    badge: 'Curated Pick',
+    title: 'Moonlite Touch',
+    desc: 'Massager berdesain elegan untuk momen me-time atau sesi intim bersama.',
+    image: '/products/moonlite-touch.jpg',
+    href: '/products/moonlite-touch',
   },
 ]
 
-export default function FeaturedProducts() {
+export default function FeaturedProductSection() {
   return (
-    <section className="bg-white py-36 px-6 md:px-20">
-      <div className="max-w-screen-2xl mx-auto text-center mb-24">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+    <section className="bg-white px-6 py-28 md:px-20 text-zinc-900 border-t border-zinc-100">
+      <div className="max-w-7xl mx-auto space-y-16">
+
+        {/* 🌟 Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-serif font-semibold text-zinc-900"
+          className="text-center max-w-3xl mx-auto"
         >
-          Intimacy, Curated.
-        </motion.h2>
-        <p className="text-zinc-500 text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
-          A thoughtfully selected collection — each piece refined to heighten connection, sensation, and shared pleasure.
-        </p>
-      </div>
+          <h2 className="text-3xl md:text-4xl font-serif text-zinc-900">
+            Pilihan Unggulan
+          </h2>
+          <p className="mt-4 text-slate-600 text-lg">
+            Produk favorit dari pelanggan kami — aman, edukatif, dan menyenangkan.
+          </p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
-        {products.map((product, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ y: -6, scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-            className="group bg-white rounded-3xl border border-zinc-200 shadow-sm hover:shadow-lg transition relative overflow-hidden"
-          >
-            {/* Badge */}
-            <span className="absolute top-4 left-4 z-10 bg-black text-white text-xs uppercase font-semibold px-3 py-1 rounded-full tracking-wider">
-              {product.badge}
-            </span>
-
-            {/* Image */}
-            <div className="relative w-full h-72 overflow-hidden">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Content */}
-            <div className="p-6 space-y-4">
-              <div>
-                <h3 className="text-xl font-medium text-zinc-800">{product.name}</h3>
-                <p className="text-sm text-zinc-500 leading-snug">{product.subtitle}</p>
-              </div>
-
-              <div className="flex items-center justify-between mt-4">
-                <span className="text-lg font-semibold text-zinc-700">{product.price}</span>
-                <button className="text-zinc-700 hover:text-zinc-900 transition-transform group-hover:translate-x-1">
-                  <ArrowRight size={18} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+        {/* 🛍️ Product Cards */}
+        <div className="grid md:grid-cols-3 gap-10">
+          {featured.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-blue-50 hover:bg-blue-100 transition rounded-xl overflow-hidden shadow-sm border border-blue-100"
+            >
+              <Link href={item.href}>
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-5 space-y-2">
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <p className="text-sm text-slate-700">{item.desc}</p>
+                  <span className="inline-block mt-2 text-blue-600 text-sm font-medium">
+                    Lihat Detail →
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

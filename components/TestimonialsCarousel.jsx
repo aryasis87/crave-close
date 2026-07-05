@@ -1,89 +1,78 @@
 'use client'
 
-import { Star } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { Quote } from 'lucide-react'
+import Image from 'next/image'
 
 const testimonials = [
   {
-    quote: 'This feels like the future of intimacy. Beautifully engineered, deeply human.',
-    name: 'Alena Roy',
-    company: 'NOVA Wellness',
-    logo: '/images/l1.jpeg',
-    rating: 5,
+    name: 'Andra & Livia',
+    avatar: '/users/andra-livia.jpg',
+    text: 'Awalnya ragu, tapi Positive Crave kasih pengalaman yang bukan cuma nyaman, tapi juga membuka komunikasi di hubungan kami.',
+    tag: 'Pasangan menikah 3 tahun',
   },
   {
-    quote: 'The attention to detail is beyond anything we’ve experienced in sensual design.',
-    name: 'Hiro Tanaka',
-    company: 'Eros Japan',
-    logo: '/images/l2.jpeg',
-    rating: 4.5,
+    name: 'Dion',
+    avatar: '/users/dion.jpg',
+    text: 'Produk dan panduannya sangat thoughtful. Bukan sekadar alat, tapi beneran membantu eksplorasi diri.',
+    tag: 'Pria, 28 tahun',
   },
   {
-    quote: 'A product line that understands emotional connection and technological finesse.',
-    name: 'Clara Min',
-    company: 'MoodMatter',
-    logo: '/images/l3.jpeg',
-    rating: 5,
+    name: 'Sasha',
+    avatar: '/users/sasha.jpg',
+    text: 'Privasinya bikin nyaman banget. Barang datang tanpa label, dan kualitasnya premium!',
+    tag: 'Perempuan, 32 tahun',
   },
 ]
 
-export default function TestimonialsCarousel() {
+export default function TestimonialSection() {
   return (
-    <section className="bg-white py-32 px-6 md:px-16">
-      <div className="max-w-7xl mx-auto text-center mb-20">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+    <section className="bg-white text-zinc-900 px-6 py-28 md:px-20 border-t border-zinc-100">
+      <div className="max-w-6xl mx-auto space-y-16 text-center">
+
+        {/* 🧠 Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-serif font-semibold text-zinc-900"
+          className="max-w-3xl mx-auto"
         >
-          The Trust Gallery
-        </motion.h2>
-        <p className="text-zinc-500 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-          Brands that value intimacy, precision, and discretion share their thoughts on our vision and products.
-        </p>
-      </div>
+          <h2 className="text-3xl md:text-4xl font-serif">Apa Kata Mereka</h2>
+          <p className="mt-4 text-slate-600 text-lg">
+            Cerita nyata dari mereka yang menemukan kenyamanan dan koneksi baru lewat Positive Crave.
+          </p>
+        </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-screen-2xl mx-auto px-2 md:px-0">
-        {testimonials.map((item, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 160 }}
-            className="p-8 bg-white border border-zinc-200 rounded-3xl shadow-sm hover:shadow-md transition group"
-          >
-            <p className="text-zinc-700 text-[17px] leading-relaxed italic relative pl-4 border-l-4 border-zinc-400">
-              {item.quote}
-            </p>
-
-            <div className="mt-6 flex items-center gap-4">
-              <div className="flex flex-col">
-                <span className="text-base font-semibold text-zinc-900">{item.name}</span>
-                <div className="flex items-center gap-2 text-sm text-zinc-500">
-                  <img src={item.logo} alt={item.company} className="h-5" />
-                  <span>{item.company}</span>
+        {/* 💬 Testimonial Cards */}
+        <div className="grid md:grid-cols-3 gap-10 text-left">
+          {testimonials.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-blue-50 hover:bg-blue-100 transition rounded-2xl p-6 space-y-4 shadow-sm"
+            >
+              <Quote className="text-blue-400 w-6 h-6" />
+              <p className="text-slate-700 text-sm leading-relaxed">“{item.text}”</p>
+              <div className="flex items-center gap-3 pt-3">
+                <Image
+                  src={item.avatar}
+                  alt={item.name}
+                  width={40}
+                  height={40}
+                  className="rounded-full object-cover border border-white shadow-md"
+                />
+                <div>
+                  <p className="text-sm font-semibold">{item.name}</p>
+                  <p className="text-xs text-blue-600">{item.tag}</p>
                 </div>
               </div>
-              <div className="ml-auto flex gap-[2px]">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star
-                    key={i}
-                    size={18}
-                    className={
-                      i < Math.floor(item.rating)
-                        ? 'text-zinc-700'
-                        : i < item.rating
-                        ? 'text-zinc-500'
-                        : 'text-zinc-300'
-                    }
-                    fill={i < item.rating ? 'currentColor' : 'none'}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   )

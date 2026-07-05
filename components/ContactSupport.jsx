@@ -1,96 +1,78 @@
 'use client'
 
-import { useState } from 'react'
-import { Mail, MessageSquare, Send, ShieldCheck } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { MessageCircle, Mail, Phone, Clock } from 'lucide-react'
 
 export default function ContactSupport() {
-  const [mode, setMode] = useState('chat') // 'chat' | 'email'
-
   return (
-    <section className="bg-white text-zinc-900 py-28 px-6 md:px-12">
-      <div className="max-w-5xl mx-auto space-y-16">
-        
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight">
-            Contact Our Support Team
+    <section className="bg-white text-zinc-900 px-6 py-32 md:px-20">
+      <div className="max-w-7xl mx-auto space-y-24">
+
+        {/* 💬 Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-2xl mx-auto"
+        >
+          <h2 className="text-4xl md:text-5xl font-serif text-zinc-900 leading-tight">
+            Butuh Bantuan atau Saran?
           </h2>
-          <p className="text-lg text-zinc-600">
-            We’re here to help — fast, friendly, and fully private.
+          <p className="mt-4 text-slate-600 text-lg">
+            Kami siap membantu Anda dengan ramah dan rahasia—baik soal produk, pengiriman, maupun kebutuhan emosional.
           </p>
+        </motion.div>
+
+        {/* 🛎️ Contact Options */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: <MessageCircle size={28} className="text-blue-600" />,
+              title: 'Live Chat',
+              desc: 'Diskusi real-time dengan tim kami. Buka setiap hari 10.00–22.00 WIB.',
+              btn: 'Mulai Chat',
+            },
+            {
+              icon: <Mail size={28} className="text-blue-600" />,
+              title: 'Email Support',
+              desc: 'Kirim pertanyaan kapan saja. Balasan maksimal 1x24 jam.',
+              btn: 'Kirim Email',
+            },
+            {
+              icon: <Phone size={28} className="text-blue-600" />,
+              title: 'Telepon',
+              desc: 'Hubungi Intimacy Concierge untuk percakapan pribadi.',
+              btn: 'Hubungi Sekarang',
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2, duration: 0.6 }}
+              className="bg-blue-50 border border-blue-100 p-8 rounded-2xl space-y-5 hover:shadow-lg transition-shadow"
+            >
+              <div className="flex items-center gap-3">
+                {item.icon}
+                <h4 className="text-lg font-semibold text-zinc-900">
+                  {item.title}
+                </h4>
+              </div>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                {item.desc}
+              </p>
+              <button className="mt-2 px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-full transition">
+                {item.btn}
+              </button>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Mode Switcher */}
-        <div className="flex justify-center gap-6 text-sm font-medium">
-          <button
-            onClick={() => setMode('chat')}
-            className={`px-4 py-2 rounded-full border transition ${
-              mode === 'chat'
-                ? 'bg-zinc-800 text-white border-zinc-800 shadow'
-                : 'text-zinc-600 border-zinc-300 hover:border-zinc-500 hover:text-zinc-800'
-            }`}
-          >
-            <MessageSquare className="inline-block w-4 h-4 mr-1" />
-            Live Chat Request
-          </button>
-          <button
-            onClick={() => setMode('email')}
-            className={`px-4 py-2 rounded-full border transition ${
-              mode === 'email'
-                ? 'bg-zinc-800 text-white border-zinc-800 shadow'
-                : 'text-zinc-600 border-zinc-300 hover:border-zinc-500 hover:text-zinc-800'
-            }`}
-          >
-            <Mail className="inline-block w-4 h-4 mr-1" />
-            Email Support
-          </button>
-        </div>
-
-        {/* Contact Form */}
-        <div className="bg-white border border-zinc-200 rounded-xl p-8 md:p-12 shadow-lg space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-3">
-              <label className="block text-sm font-medium">Your Name</label>
-              <input
-                type="text"
-                placeholder="e.g. Aulia W."
-                className="w-full border border-zinc-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-400"
-              />
-            </div>
-
-            <div className="space-y-3">
-              <label className="block text-sm font-medium">Email Address</label>
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="w-full border border-zinc-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-400"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <label className="block text-sm font-medium">
-              {mode === 'chat' ? 'Chat Message' : 'Your Issue or Question'}
-            </label>
-            <textarea
-              rows={5}
-              placeholder={
-                mode === 'chat'
-                  ? 'I’d like to talk to someone about...'
-                  : 'I have a concern about order #1234...'
-              }
-              className="w-full border border-zinc-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-400"
-            />
-          </div>
-
-          <button className="flex items-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-900 text-white font-semibold rounded-xl transition">
-            <Send size={16} />
-            Submit Request
-          </button>
-
-          <div className="flex items-center gap-2 text-sm text-zinc-400 mt-2">
-            <ShieldCheck size={16} className="text-zinc-500" />
-            We respond within 12 hours, 7 days a week — fully private & secure.
+        {/* ⏱️ Footer Info */}
+        <div className="text-center mt-24">
+          <div className="inline-flex items-center gap-2 text-slate-500 text-sm">
+            <Clock className="w-4 h-4 text-blue-500" />
+            <span>Waktu respons rata-rata: 1–4 jam (chat), 6–12 jam (email)</span>
           </div>
         </div>
       </div>

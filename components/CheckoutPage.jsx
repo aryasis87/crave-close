@@ -1,132 +1,105 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import { Minus, Plus, Lock, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-const initialCart = [
-  { id: 1, name: 'Velvet Pulse Wand', price: 149, quantity: 1, image: '/images/p4.jpg' },
-  { id: 2, name: 'Silken Lube Noir', price: 39, quantity: 2, image: '/images/p3.jpg' },
-]
-
-export default function CheckoutPage() {
-  const [cart, setCart] = useState(initialCart)
-
-  const updateQuantity = (id, type) => {
-    setCart(prev =>
-      prev.map(item =>
-        item.id === id
-          ? {
-              ...item,
-              quantity:
-                type === 'increase'
-                  ? item.quantity + 1
-                  : Math.max(1, item.quantity - 1),
-            }
-          : item
-      )
-    )
-  }
-
-  const removeItem = id => {
-    setCart(prev => prev.filter(item => item.id !== id))
-  }
-
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
-  const shipping = subtotal > 100 ? 0 : 12
-  const total = subtotal + shipping
+export default function CheckoutSection() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    address: '',
+    payment: '',
+  })
 
   return (
-    <section className="bg-white text-zinc-900 py-28 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-16">
-        {/* 🛒 Cart Area */}
-        <div className="lg:col-span-2 space-y-10">
-          <h2 className="text-4xl font-serif font-semibold">Your Cart</h2>
+    <section className="bg-white text-zinc-900 px-6 py-24 md:px-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
 
-          {cart.length === 0 ? (
-            <p className="text-zinc-500">Your cart is empty.</p>
-          ) : (
-            cart.map(item => (
-              <div
-                key={item.id}
-                className="flex flex-col md:flex-row items-start md:items-center gap-6 border-b border-zinc-200 pb-8"
-              >
-                <div className="relative w-full md:w-36 h-52 md:h-36 rounded-xl overflow-hidden shadow-sm">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="flex-1 space-y-2">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-medium">{item.name}</h3>
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="text-zinc-400 hover:text-red-500 transition"
-                    >
-                      <X size={18} />
-                    </button>
-                  </div>
-
-                  <div className="text-zinc-500 text-sm">Luxury Edition</div>
-
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => updateQuantity(item.id, 'decrease')}
-                        className="w-8 h-8 border border-zinc-300 rounded hover:border-zinc-600 flex items-center justify-center"
-                      >
-                        <Minus size={16} />
-                      </button>
-                      <span className="text-lg">{item.quantity}</span>
-                      <button
-                        onClick={() => updateQuantity(item.id, 'increase')}
-                        className="w-8 h-8 border border-zinc-300 rounded hover:border-zinc-600 flex items-center justify-center"
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </div>
-                    <span className="text-lg font-semibold text-zinc-700">
-                      ${item.price * item.quantity}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        {/* 💳 Summary */}
-        <div className="sticky top-28 self-start bg-zinc-50 border border-zinc-200 rounded-2xl p-8 shadow-md space-y-6">
-          <h3 className="text-xl font-serif font-semibold mb-4">Order Summary</h3>
-
+        {/* 🛍️ Cart Summary */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-blue-50 border border-blue-100 rounded-xl p-6 space-y-6 shadow-sm"
+        >
+          <h2 className="text-2xl font-semibold">Ringkasan Pesanan</h2>
           <div className="space-y-4 text-sm">
-            <div className="flex justify-between text-zinc-600">
-              <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+            <div className="flex justify-between">
+              <span>Velvet Pulse</span>
+              <span>Rp 499.000</span>
             </div>
-            <div className="flex justify-between text-zinc-600">
-              <span>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+            <div className="flex justify-between">
+              <span>Sora Essentials Kit</span>
+              <span>Rp 289.000</span>
             </div>
-            <div className="border-t pt-4 flex justify-between text-base text-zinc-900 font-semibold">
+            <hr className="border-zinc-200" />
+            <div className="flex justify-between font-semibold">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>Rp 788.000</span>
             </div>
           </div>
+          <p className="text-xs text-slate-600 mt-4">
+            *Harga sudah termasuk PPN. Pengiriman rahasia & tanpa label produk.
+          </p>
+        </motion.div>
 
-          <button className="w-full mt-6 py-3 bg-zinc-900 hover:bg-zinc-800 text-white font-medium rounded-xl transition-all duration-300 shadow">
-            Continue to Payment
+        {/* 📦 Formulir Checkout */}
+        <motion.form
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <h2 className="text-2xl font-semibold">Detail Pengiriman</h2>
+
+          <input
+            type="text"
+            placeholder="Nama Lengkap"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <input
+            type="email"
+            placeholder="Email (untuk resi & konfirmasi)"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <textarea
+            rows={4}
+            placeholder="Alamat lengkap (dengan kode pos)"
+            value={form.address}
+            onChange={(e) => setForm({ ...form, address: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <select
+            value={form.payment}
+            onChange={(e) => setForm({ ...form, payment: e.target.value })}
+            className="w-full px-4 py-3 rounded-lg border border-zinc-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Pilih metode pembayaran</option>
+            <option value="bank">Transfer Bank</option>
+            <option value="qris">QRIS / E-Wallet</option>
+            <option value="cod">Bayar di Tempat (COD)</option>
+          </select>
+
+          <button
+            type="submit"
+            className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition active:scale-[0.98] shadow-lg"
+          >
+            Lanjutkan Pembayaran
           </button>
 
-          <div className="flex items-center gap-2 text-xs text-zinc-500 mt-3">
-            <Lock size={14} className="text-zinc-500" />
-            Encrypted & secure checkout
-          </div>
-        </div>
+          <p className="text-xs text-center text-slate-500">
+            Kami menjamin privasi Anda. Semua data terenkripsi.
+          </p>
+        </motion.form>
       </div>
     </section>
   )

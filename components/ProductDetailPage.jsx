@@ -1,100 +1,83 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Star, ShieldCheck, Truck, CheckCircle } from 'lucide-react'
+import { ShieldCheck, Heart, BookOpen } from 'lucide-react'
 
-const product = {
-  name: 'Velvet Pulse Wand',
-  tagline: 'A masterpiece of sensual silence.',
-  price: 149,
-  reviews: 248,
-  rating: 4.9,
-  description: `Blending aesthetic harmony and engineering excellence, Velvet Pulse is more than a wand — it's an invitation to explore intimacy through sensation, precision, and silence.`,
-  highlights: [
-    'Whisper-quiet dual motors',
-    'Medical-grade silicone surface',
-    'App-controlled vibration modes',
-    'Wireless magnetic USB charging',
-    'Full-body waterproof (IPX7)',
-  ],
-}
-
-export default function ProductDetailPage() {
+export default function ProductDetailSection() {
   return (
-    <section className="bg-white text-zinc-900 px-6 py-32 md:px-24 font-sans">
-      <div className="max-w-7xl mx-auto space-y-24">
+    <section className="bg-white text-zinc-900 px-6 py-28 md:px-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
-        {/* 💫 Scene 1: Hero Visual */}
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-5">
-            <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight tracking-tight">
-              {product.name}
+        {/* 📷 Product Image */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-lg bg-blue-50"
+        >
+          <Image
+            src="/product-sample.png" // Replace with real product image
+            alt="Product image"
+            fill
+            className="object-contain p-6"
+            priority
+          />
+        </motion.div>
+
+        {/* 📖 Product Details */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="space-y-8"
+        >
+          <div className="space-y-2">
+            <h1 className="text-3xl md:text-4xl font-serif font-semibold">
+              Velvet Pulse Wand
             </h1>
-            <p className="text-zinc-600 text-lg">{product.tagline}</p>
-
-            {/* Rating */}
-            <div className="flex items-center gap-2 mt-4 text-yellow-500">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={18} fill="#facc15" className="text-yellow-400" />
-              ))}
-              <span className="ml-2 text-sm text-zinc-500">({product.reviews} reviews)</span>
-            </div>
-
-            <p className="text-base text-zinc-700 leading-relaxed mt-6">{product.description}</p>
+            <p className="text-blue-600 text-sm font-medium">For Connection & Comfort</p>
           </div>
 
-          <div className="relative w-full h-[520px] rounded-3xl overflow-hidden shadow-xl">
-            <Image
-              src="/images/p3.jpg"
-              alt={product.name}
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
+          <p className="text-slate-600 text-lg leading-relaxed">
+            Dirancang untuk pengalaman eksplorasi yang lembut dan menyenangkan. Ideal untuk pasangan pemula maupun berpengalaman. Dengan 5 mode getar & desain ergonomis.
+          </p>
 
-        {/* 🎯 Scene 2: Features + Icons */}
-        <div className="grid md:grid-cols-2 gap-24 items-start">
-          <div className="space-y-5">
-            <h2 className="text-3xl font-serif font-semibold">Crafted For Deep Connection</h2>
-            <ul className="mt-6 space-y-3 pl-5 text-zinc-600 text-sm list-disc">
-              {product.highlights.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid gap-6 text-sm text-zinc-600">
-            <div className="flex items-center gap-4">
-              <Truck size={20} className="text-orange-500" />
-              <span>Discreet worldwide shipping in 2–5 business days</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <ShieldCheck size={20} className="text-orange-500" />
-              <span>2-year quality warranty & lifetime support</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <CheckCircle size={20} className="text-orange-500" />
-              <span>100% body-safe materials (tested & certified)</span>
-            </div>
-          </div>
-        </div>
-
-        {/* 💳 Scene 3: Pricing + CTA */}
-        <div className="border-t border-zinc-200 pt-12 grid md:grid-cols-2 gap-16 items-center">
-          <div className="space-y-3">
-            <h3 className="text-2xl font-semibold font-serif">{product.name}</h3>
-            <p className="text-sm text-zinc-500 max-w-md">
-              Secure checkout. Discreet packaging. Designed in Berlin.
-            </p>
+          {/* 💡 Features */}
+          <div className="grid gap-4">
+            {[
+              {
+                icon: <ShieldCheck className="text-blue-600" size={20} />,
+                text: 'Bahan medical-grade, bebas BPA, dan waterproof',
+              },
+              {
+                icon: <Heart className="text-blue-600" size={20} />,
+                text: 'Mode getar responsif untuk stimulasi berbeda',
+              },
+              {
+                icon: <BookOpen className="text-blue-600" size={20} />,
+                text: 'Termasuk panduan digital interaktif & tips penggunaan',
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div>{item.icon}</div>
+                <p className="text-sm text-slate-700 leading-snug">{item.text}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="flex items-center gap-8 justify-start md:justify-end">
-            <span className="text-4xl font-bold text-orange-500">${product.price}</span>
-            <button className="px-7 py-3 rounded-full bg-black text-white hover:bg-zinc-800 transition shadow-xl">
-              Add to Cart
+          {/* 🛒 CTA */}
+          <div className="flex gap-4 pt-6">
+            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition shadow">
+              Tambah ke Keranjang
+            </button>
+            <button className="px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-semibold transition">
+              Lihat Panduan
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
