@@ -4,10 +4,10 @@ import "./globals.css";
 const display = Instrument_Serif({ subsets: ["latin"], variable: "--font-display", weight: "400", style: ["normal","italic"] });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CreativeWork","name":"Positive Crave — Konsep Close","description":"Landing page brand keintiman","url":"https://crave-close.vercel.app"};
+const __jsonld = {"@context":"https://schema.org","@type":"CreativeWork","name":"Positive Crave — Konsep Close","description":"Landing page brand keintiman","url":"https://crave-close.pintuweb.com"};
 
 export const metadata = {
-  metadataBase: new URL("https://crave-close.vercel.app"),
+  metadataBase: new URL("https://crave-close.pintuweb.com"),
   title: "Positive Crave — Konsep Close",
   description: "Landing page Positive Crave konsep \"Close\": cara baru untuk merasa dekat — desain, edukasi, dan eksplorasi.",
   applicationName: "Positive Crave",
@@ -15,11 +15,11 @@ export const metadata = {
   authors: [{ name: "Positive Crave" }],
   creator: "Positive Crave",
   publisher: "Positive Crave",
-  alternates: { canonical: "https://crave-close.vercel.app" },
+  alternates: { canonical: "https://crave-close.pintuweb.com" },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://crave-close.vercel.app",
+    url: "https://crave-close.pintuweb.com",
     siteName: "Positive Crave",
     title: "Positive Crave — Konsep Close",
     description: "Landing page Positive Crave konsep \"Close\": cara baru untuk merasa dekat — desain, edukasi, dan eksplorasi.",
