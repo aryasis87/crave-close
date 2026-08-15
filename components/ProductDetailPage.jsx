@@ -6,19 +6,19 @@ import { ShieldCheck, Heart, BookOpen } from 'lucide-react'
 
 export default function ProductDetailSection() {
   return (
-    <section className="bg-white text-zinc-900 px-6 py-28 md:px-20">
+    <section className="bg-deep-2 text-mist px-6 py-28 md:px-20">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
 
         {/* 📷 Product Image */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-lg bg-blue-50"
+          className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-lg bg-tide/10"
         >
           <Image
-            src="/product-sample.png" // Replace with real product image
+            src="/images/p1.webp"
             alt="Product image"
             fill
             className="object-contain p-6"
@@ -28,8 +28,8 @@ export default function ProductDetailSection() {
 
         {/* 📖 Product Details */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="space-y-8"
@@ -38,7 +38,7 @@ export default function ProductDetailSection() {
             <h1 className="text-3xl md:text-4xl font-serif font-semibold">
               Velvet Pulse Wand
             </h1>
-            <p className="text-blue-600 text-sm font-medium">For Connection & Comfort</p>
+            <p className="text-tide text-sm font-medium">For Connection & Comfort</p>
           </div>
 
           <p className="text-slate-600 text-lg leading-relaxed">
@@ -49,15 +49,15 @@ export default function ProductDetailSection() {
           <div className="grid gap-4">
             {[
               {
-                icon: <ShieldCheck className="text-blue-600" size={20} />,
+                icon: <ShieldCheck className="text-tide" size={20} />,
                 text: 'Bahan medical-grade, bebas BPA, dan waterproof',
               },
               {
-                icon: <Heart className="text-blue-600" size={20} />,
+                icon: <Heart className="text-tide" size={20} />,
                 text: 'Mode getar responsif untuk stimulasi berbeda',
               },
               {
-                icon: <BookOpen className="text-blue-600" size={20} />,
+                icon: <BookOpen className="text-tide" size={20} />,
                 text: 'Termasuk panduan digital interaktif & tips penggunaan',
               },
             ].map((item, i) => (
@@ -70,10 +70,10 @@ export default function ProductDetailSection() {
 
           {/* 🛒 CTA */}
           <div className="flex gap-4 pt-6">
-            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition shadow">
+            <button className="px-6 py-3 bg-tide hover:bg-tide text-mist rounded-lg font-semibold transition shadow">
               Tambah ke Keranjang
             </button>
-            <button className="px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-semibold transition">
+            <button className="px-6 py-3 border border-tide text-tide hover:bg-tide/10 rounded-lg font-semibold transition">
               Lihat Panduan
             </button>
           </div>

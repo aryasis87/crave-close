@@ -5,22 +5,22 @@ import { ShieldCheck, Sparkles, Globe, Leaf } from 'lucide-react'
 
 const uspList = [
   {
-    icon: <ShieldCheck className="text-blue-600" size={28} />,
+    icon: <ShieldCheck className="text-tide" size={28} />,
     title: 'Privasi & Keamanan Terjamin',
     desc: 'Pengemasan tanpa label, transaksi terenkripsi, dan pengalaman belanja yang benar-benar privat.',
   },
   {
-    icon: <Sparkles className="text-blue-600" size={28} />,
+    icon: <Sparkles className="text-tide" size={28} />,
     title: 'Panduan Interaktif',
     desc: 'Setiap produk dilengkapi dengan panduan penggunaan digital dan edukasi hubungan yang suportif.',
   },
   {
-    icon: <Globe className="text-blue-600" size={28} />,
+    icon: <Globe className="text-tide" size={28} />,
     title: 'Kurasi Global',
     desc: 'Kami hanya menghadirkan produk terpercaya, aman, dan didesain oleh brand intimacy kelas dunia.',
   },
   {
-    icon: <Leaf className="text-blue-600" size={28} />,
+    icon: <Leaf className="text-tide" size={28} />,
     title: 'Aman & Ramah Tubuh',
     desc: 'Bebas BPA, menggunakan bahan medical-grade, hypoallergenic, dan telah teruji secara dermatologis.',
   },
@@ -28,7 +28,7 @@ const uspList = [
 
 export default function USPSection() {
   return (
-    <section className="bg-white text-zinc-900 px-6 py-28 md:px-20 border-t border-zinc-100">
+    <section className="bg-deep-2 text-mist px-6 py-28 md:px-20 border-t border-mist/12">
       <div className="max-w-7xl mx-auto text-center space-y-16">
 
         {/* 🧠 Title */}
@@ -39,7 +39,7 @@ export default function USPSection() {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-serif text-zinc-900">
+          <h2 className="text-3xl md:text-4xl font-serif text-mist">
             Kenapa Positive Crave?
           </h2>
           <p className="mt-4 text-slate-600 text-lg">
@@ -56,7 +56,7 @@ export default function USPSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex gap-5 items-start p-6 rounded-xl bg-blue-50 hover:bg-blue-100 transition duration-300"
+              className="flex gap-5 items-start p-6 rounded-xl bg-tide/10 hover:bg-tide/15 transition duration-300"
             >
               <div className="shrink-0">{usp.icon}</div>
               <div>

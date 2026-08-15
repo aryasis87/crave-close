@@ -27,7 +27,7 @@ const testimonials = [
 
 export default function TestimonialSection() {
   return (
-    <section className="bg-white text-zinc-900 px-6 py-28 md:px-20 border-t border-zinc-100">
+    <section className="bg-deep-2 text-mist px-6 py-28 md:px-20 border-t border-mist/12">
       <div className="max-w-6xl mx-auto space-y-16 text-center">
 
         {/* 🧠 Heading */}
@@ -53,9 +53,9 @@ export default function TestimonialSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-blue-50 hover:bg-blue-100 transition rounded-2xl p-6 space-y-4 shadow-sm"
+              className="bg-tide/10 hover:bg-tide/15 transition rounded-2xl p-6 space-y-4 shadow-sm"
             >
-              <Quote className="text-blue-400 w-6 h-6" />
+              <Quote className="text-tide w-6 h-6" />
               <p className="text-slate-700 text-sm leading-relaxed">“{item.text}”</p>
               <div className="flex items-center gap-3 pt-3">
                 <Image
@@ -63,11 +63,11 @@ export default function TestimonialSection() {
                   alt={item.name}
                   width={40}
                   height={40}
-                  className="rounded-full object-cover border border-white shadow-md"
+                  className="rounded-full object-cover border border-mist/25 shadow-md"
                 />
                 <div>
                   <p className="text-sm font-semibold">{item.name}</p>
-                  <p className="text-xs text-blue-600">{item.tag}</p>
+                  <p className="text-xs text-tide">{item.tag}</p>
                 </div>
               </div>
             </motion.div>

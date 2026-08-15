@@ -8,7 +8,7 @@ export default function LoginSection() {
   const [form, setForm] = useState({ email: '', password: '' })
 
   return (
-    <section className="bg-white min-h-screen px-6 py-32 md:px-20 text-zinc-900">
+    <section className="bg-deep-2 min-h-screen px-6 py-32 md:px-20 text-mist">
       <div className="max-w-md mx-auto space-y-10">
 
         {/* 🔐 Title */}
@@ -18,7 +18,7 @@ export default function LoginSection() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h1 className="text-3xl md:text-4xl font-serif text-zinc-900">
+          <h1 className="text-3xl md:text-4xl font-serif text-mist">
             Selamat Datang Kembali
           </h1>
           <p className="mt-3 text-slate-600 text-sm">
@@ -31,14 +31,14 @@ export default function LoginSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="bg-blue-50 p-8 rounded-2xl border border-blue-100 shadow-md space-y-5"
+          className="bg-tide/10 p-8 rounded-2xl border border-tide/25 shadow-md space-y-5"
         >
           <input
             type="email"
             placeholder="Email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-4 py-3 rounded-lg border border-mist/12 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           />
 
           <input
@@ -46,7 +46,7 @@ export default function LoginSection() {
             placeholder="Password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-4 py-3 rounded-lg border border-mist/12 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           />
 
           <div className="flex justify-between text-sm text-slate-500">
@@ -54,14 +54,14 @@ export default function LoginSection() {
               <input type="checkbox" className="accent-blue-600" />
               Ingat saya
             </label>
-            <Link href="/forgot" className="text-blue-600 hover:underline">
+            <Link href="/forgot" className="text-tide hover:underline">
               Lupa Password?
             </Link>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition active:scale-[0.98] shadow-md"
+            className="w-full py-3 bg-tide hover:bg-tide text-mist font-medium rounded-xl transition active:scale-[0.98] shadow-md"
           >
             Masuk
           </button>
@@ -75,7 +75,7 @@ export default function LoginSection() {
           className="text-center text-sm text-slate-500"
         >
           Belum punya akun?{' '}
-          <Link href="/register" className="text-blue-600 hover:underline">
+          <Link href="/register" className="text-tide hover:underline">
             Daftar sekarang →
           </Link>
         </motion.div>

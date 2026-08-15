@@ -5,25 +5,25 @@ import { Heart, Flame, Lightbulb, Compass } from 'lucide-react'
 
 const categories = [
   {
-    icon: <Heart size={28} className="text-blue-600" />,
+    icon: <Heart size={28} className="text-tide" />,
     title: 'For Beginners',
     desc: 'Eksplorasi pertama kali dengan rasa aman, pelan-pelan, dan menyenangkan.',
     href: '#',
   },
   {
-    icon: <Flame size={28} className="text-blue-600" />,
+    icon: <Flame size={28} className="text-tide" />,
     title: 'Deepen Connection',
     desc: 'Untuk pasangan yang ingin memperdalam rasa, bukan sekadar sensasi.',
     href: '#',
   },
   {
-    icon: <Lightbulb size={28} className="text-blue-600" />,
+    icon: <Lightbulb size={28} className="text-tide" />,
     title: 'Learn Together',
     desc: 'Panduan edukatif, kuis interaktif, dan eksplorasi bersama.',
     href: '#',
   },
   {
-    icon: <Compass size={28} className="text-blue-600" />,
+    icon: <Compass size={28} className="text-tide" />,
     title: 'Just Curious',
     desc: 'Jelajahi dengan rasa penasaran tanpa tekanan atau harapan.',
     href: '#',
@@ -32,7 +32,7 @@ const categories = [
 
 export default function CategoryGrid() {
   return (
-    <section className="bg-white text-zinc-800 px-6 py-28 md:px-20">
+    <section className="bg-deep-2 text-mist px-6 py-28 md:px-20">
       <div className="max-w-7xl mx-auto space-y-16">
 
         {/* 🧭 Heading */}
@@ -61,14 +61,14 @@ export default function CategoryGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="group block p-6 rounded-2xl border border-blue-100 bg-blue-50/50 hover:bg-blue-100 transition shadow-sm hover:shadow-lg"
+              className="group block p-6 rounded-2xl border border-tide/25 bg-tide/10/50 hover:bg-tide/15 transition shadow-sm hover:shadow-lg"
             >
               <div className="flex items-start gap-4">
-                <div className="p-2 bg-white rounded-lg shadow text-blue-600">
+                <div className="p-2 bg-deep-2 rounded-lg shadow text-tide">
                   {cat.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-zinc-900 mb-1">
+                  <h4 className="text-lg font-medium text-mist mb-1">
                     {cat.title}
                   </h4>
                   <p className="text-sm text-slate-600 leading-relaxed">

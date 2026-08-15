@@ -1,65 +1,82 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
-export default function Hero() {
+const janji = [
+  ['Kemasan', 'Polos, tanpa merek'],
+  ['Material', 'Medical-grade, bebas BPA'],
+  ['Dukungan', 'Dijawab manusia'],
+]
+
+export default function HeroSection() {
   return (
-    <section className="bg-zinc-50 text-zinc-900 px-6 py-32 md:px-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
+    <section className="relative overflow-hidden bg-deep pt-28 pb-16 md:pt-36 md:pb-24">
+      <div aria-hidden="true" className="tide-glow absolute inset-0" />
 
-        {/* 👈 Left Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true }}
-          className="space-y-8"
-        >
-          <div className="inline-flex items-center gap-2 text-blue-600 font-medium text-sm">
-            <Sparkles className="w-4 h-4" />
-            Designed for Discovery
-          </div>
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-20">
+        <div>
+          <p className="micro mb-7 text-tide">Positive Crave · Untuk pasangan</p>
 
-          <h1 className="text-4xl md:text-5xl font-serif font-bold leading-tight tracking-tight">
-            A New Way to Feel Close.
+          <h1 className="text-[2.7rem] leading-[1.06] sm:text-5xl lg:text-[4rem]">
+            A New Way
+            <br />
+            to Feel <span className="text-tide">Close</span>.
           </h1>
 
-          <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
-            Positive Crave bukan hanya produk. Ini adalah gerakan untuk membangun keintiman yang lebih jujur, tenang, dan saling memahami — melalui desain, edukasi, dan eksplorasi.
+          <p className="mt-7 max-w-lg leading-relaxed text-haze">
+            Kedekatan tidak dibeli, tapi dibicarakan. Kami mulai dari percakapannya dulu — soal apa
+            yang ingin dicoba, apa yang tidak, dan bagaimana cara berhenti kalau salah satu berubah
+            pikiran.
           </p>
 
-          <div className="flex gap-4 flex-wrap pt-2">
-            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition shadow">
-              Mulai Eksplorasi
-            </button>
-            <button className="px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-semibold transition">
-              Lihat Panduan
-            </button>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/#percakapan"
+              className="micro inline-flex items-center justify-center rounded-full bg-tide px-8 py-4 text-deep transition-colors duration-300 hover:bg-mist"
+            >
+              Mulai Percakapan
+            </Link>
+            <Link
+              href="/#produk"
+              className="micro inline-flex items-center justify-center rounded-full border border-mist/25 px-8 py-4 text-mist transition-colors duration-300 hover:border-mist/55"
+            >
+              Lihat Koleksi
+            </Link>
           </div>
-        </motion.div>
 
-        {/* 👉 Right Illustration / Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.9 }}
-          viewport={{ once: true }}
-          className="relative w-full aspect-[4/3] md:aspect-[5/6] bg-blue-50 rounded-3xl overflow-hidden shadow-xl"
-        >
-          <Image
-            src="/images/w1.jpeg" // Replace with your illustration
-            alt="Modern intimacy illustration"
-            fill
-            className="object-contain"
-            priority
-          />
-        </motion.div>
+          <dl className="mt-14 grid gap-7 border-t border-mist/12 pt-8 sm:grid-cols-3">
+            {janji.map(([k, v]) => (
+              <div key={k}>
+                <dt className="micro text-haze/55">{k}</dt>
+                <dd className="mt-2.5 text-sm font-semibold text-mist">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <figure className="relative">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-deep-2">
+            <Image
+              src="/images/w1.jpeg"
+              alt="Momen tenang berdua"
+              fill
+              priority
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-deep via-transparent to-transparent"
+            />
+          </div>
+
+          <figcaption className="card-soft absolute right-5 bottom-5 left-5 px-5 py-4">
+            <p className="micro text-tide">Sebelum apa pun</p>
+            <p className="mt-2 text-sm leading-relaxed text-mist/85">
+              Sepakati dulu titik mulainya — sisanya jauh lebih mudah.
+            </p>
+          </figcaption>
+        </figure>
       </div>
-
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50 via-white to-transparent opacity-30 pointer-events-none z-0" />
     </section>
   )
 }

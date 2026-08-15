@@ -8,26 +8,26 @@ const featured = [
   {
     title: 'Velvet Pulse',
     desc: 'Stimulator dengan 10 mode getaran, lembut dan powerful. Cocok untuk pemula & pasangan.',
-    image: '/products/velvet-pulse.jpg',
-    href: '/products/velvet-pulse',
+    image: '/images/p2.jpg',
+    href: '/produk',
   },
   {
     title: 'Sora Essentials Kit',
     desc: 'Paket eksplorasi awal dengan pelumas, massage oil, dan toy cleaner. Praktis & stylish.',
-    image: '/products/sora-kit.jpg',
-    href: '/products/sora-kit',
+    image: '/images/p3.jpg',
+    href: '/produk',
   },
   {
     title: 'Moonlite Touch',
     desc: 'Massager berdesain elegan untuk momen me-time atau sesi intim bersama.',
-    image: '/products/moonlite-touch.jpg',
-    href: '/products/moonlite-touch',
+    image: '/images/p4.jpg',
+    href: '/produk',
   },
 ]
 
 export default function FeaturedProductSection() {
   return (
-    <section className="bg-white px-6 py-28 md:px-20 text-zinc-900 border-t border-zinc-100">
+    <section className="bg-deep-2 px-6 py-28 md:px-20 text-mist border-t border-mist/12">
       <div className="max-w-7xl mx-auto space-y-16">
 
         {/* 🌟 Title */}
@@ -38,7 +38,7 @@ export default function FeaturedProductSection() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-serif text-zinc-900">
+          <h2 className="text-3xl md:text-4xl font-serif text-mist">
             Pilihan Unggulan
           </h2>
           <p className="mt-4 text-slate-600 text-lg">
@@ -55,7 +55,7 @@ export default function FeaturedProductSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-blue-50 hover:bg-blue-100 transition rounded-xl overflow-hidden shadow-sm border border-blue-100"
+              className="bg-tide/10 hover:bg-tide/15 transition rounded-xl overflow-hidden shadow-sm border border-tide/25"
             >
               <Link href={item.href}>
                 <div className="relative aspect-[4/3]">
@@ -69,7 +69,7 @@ export default function FeaturedProductSection() {
                 <div className="p-5 space-y-2">
                   <h3 className="text-lg font-semibold">{item.title}</h3>
                   <p className="text-sm text-slate-700">{item.desc}</p>
-                  <span className="inline-block mt-2 text-blue-600 text-sm font-medium">
+                  <span className="inline-block mt-2 text-tide text-sm font-medium">
                     Lihat Detail →
                   </span>
                 </div>

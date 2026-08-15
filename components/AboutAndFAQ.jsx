@@ -44,7 +44,7 @@ export default function AboutFAQSection() {
   const [openIndex, setOpenIndex] = useState(null)
 
   return (
-    <section className="bg-white text-zinc-900 px-6 py-32 md:px-20">
+    <section className="bg-deep-2 text-mist px-6 py-32 md:px-20">
       <div className="max-w-7xl mx-auto space-y-24">
 
         {/* 🧡 Brand Statement */}
@@ -55,8 +55,8 @@ export default function AboutFAQSection() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto"
         >
-          <Info className="mx-auto text-blue-500 mb-4" size={36} />
-          <h2 className="text-4xl md:text-5xl font-serif tracking-tight leading-tight text-zinc-900">
+          <Info className="mx-auto text-tide mb-4" size={36} />
+          <h2 className="text-4xl md:text-5xl font-serif tracking-tight leading-tight text-mist">
             Kenyamanan Dimulai dari Pemahaman
           </h2>
           <p className="mt-6 text-lg text-slate-600">
@@ -78,8 +78,8 @@ export default function AboutFAQSection() {
                   }}
                   className={`px-5 py-2 rounded-full text-sm font-medium transition ${
                     selected === cat
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                      ? 'bg-tide text-mist'
+                      : 'bg-tide/10 text-tide hover:bg-tide/15'
                   }`}
                 >
                   {cat}
@@ -91,17 +91,17 @@ export default function AboutFAQSection() {
               {sections[selected].map((item, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-zinc-200 bg-blue-50"
+                  className="rounded-xl border border-mist/12 bg-tide/10"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="w-full flex justify-between items-center px-6 py-4 text-left hover:bg-blue-100 transition"
+                    className="w-full flex justify-between items-center px-6 py-4 text-left hover:bg-tide/15 transition"
                   >
-                    <span className="text-base font-medium text-zinc-800">
+                    <span className="text-base font-medium text-mist">
                       {item.q}
                     </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-blue-500 transition-transform ${
+                      className={`w-5 h-5 text-tide transition-transform ${
                         openIndex === i ? 'rotate-180' : ''
                       }`}
                     />
@@ -130,12 +130,12 @@ export default function AboutFAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             viewport={{ once: true }}
-            className="sticky top-28 space-y-8 bg-blue-50 p-8 rounded-2xl border border-zinc-200 shadow-md"
+            className="sticky top-28 space-y-8 bg-tide/10 p-8 rounded-2xl border border-mist/12 shadow-md"
           >
-            <div className="text-lg font-light italic text-blue-700 border-l-4 pl-4 border-blue-500">
+            <div className="text-lg font-light italic text-tide border-l-4 pl-4 border-tide">
               “Kenyamanan itu bukan datang dari tahu semuanya, tapi dari berani tanya.”
             </div>
-            <button className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition">
+            <button className="w-full py-3 bg-tide hover:bg-tide text-mist font-semibold rounded-xl transition">
               Baca Panduan Lengkap
             </button>
             <p className="text-sm text-center text-slate-500">
