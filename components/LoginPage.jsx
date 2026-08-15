@@ -1,84 +1,85 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-export default function LoginSection() {
-  const [form, setForm] = useState({ email: '', password: '' })
+export default function LoginPage() {
+  const [form, setForm] = useState({ surel: '', sandi: '' })
+  const [memproses, setMemproses] = useState(false)
+
+  const ubah = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
+
+  const kirim = (e) => {
+    e.preventDefault()
+    setMemproses(true)
+    // Purwarupa desain — tidak ada autentikasi sungguhan.
+    setTimeout(() => setMemproses(false), 1000)
+  }
 
   return (
-    <section className="bg-deep-2 min-h-screen px-6 py-32 md:px-20 text-mist">
-      <div className="max-w-md mx-auto space-y-10">
+    <section className="relative overflow-hidden bg-deep pt-28 pb-20 md:pt-36 md:pb-28">
+      <div aria-hidden="true" className="tide-glow absolute inset-x-0 top-0 h-72" />
 
-        {/* 🔐 Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <h1 className="text-3xl md:text-4xl font-serif text-mist">
-            Selamat Datang Kembali
-          </h1>
-          <p className="mt-3 text-slate-600 text-sm">
-            Masuk untuk melanjutkan eksplorasi personal Anda.
-          </p>
-        </motion.div>
+      <div className="relative z-10 mx-auto w-full max-w-md px-6">
+        <p className="micro mb-5 text-tide">Akun</p>
+        <h1 className="text-[2rem] leading-[1.08] md:text-[2.5rem]">Masuk</h1>
+        <p className="mt-4 leading-relaxed text-haze">
+          Untuk melihat riwayat pesanan dan status pengiriman. Riwayat pesanan bisa dilihat berdua bila
+          Anda mau.
+        </p>
 
-        {/* 🔐 Form Login */}
-        <motion.form
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="bg-tide/10 p-8 rounded-2xl border border-tide/25 shadow-md space-y-5"
-        >
-          <input
-            type="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-mist/12 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-mist/12 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-          />
-
-          <div className="flex justify-between text-sm text-slate-500">
-            <label className="flex items-center gap-2">
-              <input type="checkbox" className="accent-blue-600" />
-              Ingat saya
+        <form onSubmit={kirim} className="mt-10 space-y-7">
+          <div>
+            <label htmlFor="surel" className="micro mb-3 block text-haze/60">
+              Surel <span className="text-tide">*</span>
             </label>
-            <Link href="/forgot" className="text-tide hover:underline">
-              Lupa Password?
-            </Link>
+            <input
+              id="surel"
+              name="surel"
+              type="email"
+              required
+              value={form.surel}
+              onChange={ubah}
+              className="w-full border-b border-mist/20 bg-transparent pb-2 text-sm text-mist focus:border-tide focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="sandi" className="micro mb-3 block text-haze/60">
+              Kata sandi <span className="text-tide">*</span>
+            </label>
+            <input
+              id="sandi"
+              name="sandi"
+              type="password"
+              required
+              value={form.sandi}
+              onChange={ubah}
+              className="w-full border-b border-mist/20 bg-transparent pb-2 text-sm text-mist focus:border-tide focus:outline-none"
+            />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 bg-tide hover:bg-tide text-mist font-medium rounded-xl transition active:scale-[0.98] shadow-md"
+            disabled={memproses}
+            className="w-full rounded-full bg-tide py-4 text-sm font-semibold text-deep transition-colors hover:bg-mist disabled:opacity-70"
           >
-            Masuk
+            {memproses ? 'Memproses…' : 'Masuk'}
           </button>
-        </motion.form>
+        </form>
 
-        {/* 🧭 Daftar Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-center text-sm text-slate-500"
-        >
-          Belum punya akun?{' '}
-          <Link href="/register" className="text-tide hover:underline">
-            Daftar sekarang →
+        <div className="mt-8 flex flex-col gap-3 border-t border-mist/12 pt-6">
+          <Link href="/forgot" className="micro text-tide hover:text-mist">
+            Lupa kata sandi
           </Link>
-        </motion.div>
+          <Link href="/register" className="micro text-haze hover:text-mist">
+            Belum punya akun — daftar
+          </Link>
+        </div>
+
+        <p className="micro mt-8 leading-[1.7] text-haze/45">
+          Purwarupa desain — tidak ada autentikasi sungguhan dan tidak ada data yang tersimpan.
+        </p>
       </div>
     </section>
   )

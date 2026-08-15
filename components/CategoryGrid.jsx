@@ -61,7 +61,7 @@ export default function CategoryGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="group block p-6 rounded-2xl border border-tide/25 bg-tide/10/50 hover:bg-tide/15 transition shadow-sm hover:shadow-lg"
+              className="group block p-6 rounded-2xl border border-tide/25 bg-tide/20 hover:bg-tide/15 transition shadow-sm hover:shadow-lg"
             >
               <div className="flex items-start gap-4">
                 <div className="p-2 bg-deep-2 rounded-lg shadow text-tide">
