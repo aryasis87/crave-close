@@ -3,7 +3,7 @@ import LoginPage from '@/components/LoginPage'
 export const metadata = {
   title: 'Masuk — Positive Crave',
   description: 'Positive Crave — perlengkapan keintiman untuk pasangan, dikirim dalam kemasan polos.',
-  alternates: { canonical: 'https://crave-close.pintuweb.com/masuk' },
+  alternates: { canonical: 'https://crave-close.vercel.app/masuk' },
   robots: { index: false, follow: true },
 }
 

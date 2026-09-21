@@ -3,7 +3,7 @@ import CheckoutPage from '@/components/CheckoutPage'
 export const metadata = {
   title: 'Pemesanan — Positive Crave',
   description: 'Positive Crave — perlengkapan keintiman untuk pasangan, dikirim dalam kemasan polos.',
-  alternates: { canonical: 'https://crave-close.pintuweb.com/checkout' },
+  alternates: { canonical: 'https://crave-close.vercel.app/checkout' },
   robots: { index: false, follow: true },
 }
 
