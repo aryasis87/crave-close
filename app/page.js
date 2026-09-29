@@ -4,11 +4,13 @@ import CategoryGrid from '@/components/CategoryGrid'
 import FeaturedProducts from '@/components/FeaturedProducts'
 import USPSection from '@/components/USPSection'
 import TestimonialsCarousel from '@/components/TestimonialsCarousel'
+import ObrolanTeaser from '@/components/ObrolanTeaser'
 import AboutAndFAQ from '@/components/AboutAndFAQ'
 import ContactSupport from '@/components/ContactSupport'
 
-/* Landing page hanya memuat bagian milik landing page. ProductDetail,
-   Checkout, dan Login yang dulu ikut dirender di sini kini punya rute sendiri. */
+/* Beranda Close: percakapan lebih dulu, situasi kedua, barang ketiga.
+   Dek 24 kartu di /percakapan, koleksi per situasi di /koleksi, tulisan
+   berbentuk dialog di /jurnal. */
 export default function Home() {
   return (
     <>
@@ -18,6 +20,7 @@ export default function Home() {
       <FeaturedProducts />
       <USPSection />
       <TestimonialsCarousel />
+      <ObrolanTeaser />
       <AboutAndFAQ />
       <ContactSupport />
     </>

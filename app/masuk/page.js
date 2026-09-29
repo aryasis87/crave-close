@@ -1,12 +1,12 @@
-import LoginPage from '@/components/LoginPage'
+import AkunForm from '@/components/AkunForm'
 
 export const metadata = {
   title: 'Masuk — Positive Crave',
-  description: 'Positive Crave — perlengkapan keintiman untuk pasangan, dikirim dalam kemasan polos.',
+  description: 'Masuk ke akun Positive Crave untuk melihat pesanan dan daftar keinginan berdua.',
   alternates: { canonical: 'https://crave-close.vercel.app/masuk' },
   robots: { index: false, follow: true },
 }
 
-export default function Route() {
-  return <LoginPage />
+export default function Page() {
+  return <AkunForm mode="masuk" />
 }

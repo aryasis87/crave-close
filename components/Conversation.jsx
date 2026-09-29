@@ -57,7 +57,7 @@ export default function Conversation() {
             <article key={k.no} className="card-soft flex flex-col p-7">
               <div className="mb-5 flex items-center justify-between gap-4">
                 <span className="micro text-tide">{k.no}</span>
-                <span className="micro text-haze/55">{k.kapan}</span>
+                <span className="micro text-haze">{k.kapan}</span>
               </div>
 
               <p className="font-[family-name:var(--font-display)] text-xl leading-snug text-mist md:text-2xl">
@@ -75,12 +75,14 @@ export default function Conversation() {
           <p className="mx-auto max-w-xl leading-relaxed text-haze">
             Kalau percakapannya sudah terjadi, memilih barangnya jadi bagian yang paling mudah.
           </p>
-          <Link
-            href="/#produk"
-            className="micro mt-6 inline-block rounded-full bg-tide px-7 py-3.5 text-deep transition-colors hover:bg-mist"
-          >
-            Baru Lihat Koleksi
-          </Link>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/percakapan" className="micro inline-block rounded-full bg-tide px-7 py-3.5 text-deep transition-colors hover:bg-mist">
+              Buka 24 kartu lainnya
+            </Link>
+            <Link href="/koleksi" className="micro inline-block rounded-full border border-mist/25 px-7 py-3.5 text-mist transition-colors hover:border-tide">
+              Baru lihat koleksi
+            </Link>
+          </div>
         </div>
       </div>
     </section>

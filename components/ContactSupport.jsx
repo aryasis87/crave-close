@@ -1,80 +1,36 @@
-'use client'
+/* Bantuan Close — saluran kontak yang sama dengan varian lain dari brief ini.
+   Janji waktu respons yang tidak konsisten dan "Intimacy Concierge" dibuang. */
 
-import { motion } from 'framer-motion'
-import { MessageCircle, Mail, Phone, Clock } from 'lucide-react'
+const SALURAN = [
+  { label: 'Chat', nilai: 'Setiap hari 10.00–22.00 WIB', ket: 'Dijawab orang, bukan bot.' },
+  { label: 'Surel', nilai: 'halo@positivecrave.id', href: 'mailto:halo@positivecrave.id', ket: 'Untuk pertanyaan panjang atau klaim garansi.' },
+  { label: 'Telepon', nilai: '+62 812 3456 7890', href: 'tel:+6281234567890', ket: 'Senin–Jumat 09.00–17.00 WIB.' },
+]
 
 export default function ContactSupport() {
   return (
-    <section className="bg-deep-2 text-mist px-6 py-32 md:px-20">
-      <div className="max-w-7xl mx-auto space-y-24">
-
-        {/* 💬 Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-2xl mx-auto"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif text-mist leading-tight">
-            Butuh Bantuan atau Saran?
-          </h2>
-          <p className="mt-4 text-slate-600 text-lg">
-            Kami siap membantu Anda dengan ramah dan rahasia—baik soal produk, pengiriman, maupun kebutuhan emosional.
+    <section id="kontak" aria-labelledby="kontak-judul" className="relative overflow-hidden bg-deep py-20 md:py-28">
+      <div aria-hidden="true" className="tide-glow absolute inset-0" />
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p className="micro mb-5 text-tide">Bantuan</p>
+          <h2 id="kontak-judul" className="text-[2.1rem] leading-[1.12] md:text-[2.9rem]">Tanyakan berdua, atau sendiri dulu</h2>
+          <p className="mt-5 max-w-md leading-relaxed text-haze">
+            Kadang yang dibutuhkan bukan barang, melainkan seseorang yang bisa ditanya tanpa dihakimi. Kami menjawab
+            tanpa menawarkan produk sebagai jawabannya.
           </p>
-        </motion.div>
-
-        {/* 🛎️ Contact Options */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: <MessageCircle size={28} className="text-tide" />,
-              title: 'Live Chat',
-              desc: 'Diskusi real-time dengan tim kami. Buka setiap hari 10.00–22.00 WIB.',
-              btn: 'Mulai Chat',
-            },
-            {
-              icon: <Mail size={28} className="text-tide" />,
-              title: 'Email Support',
-              desc: 'Kirim pertanyaan kapan saja. Balasan maksimal 1x24 jam.',
-              btn: 'Kirim Email',
-            },
-            {
-              icon: <Phone size={28} className="text-tide" />,
-              title: 'Telepon',
-              desc: 'Hubungi Intimacy Concierge untuk percakapan pribadi.',
-              btn: 'Hubungi Sekarang',
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
-              className="bg-tide/10 border border-tide/25 p-8 rounded-2xl space-y-5 hover:shadow-lg transition-shadow"
-            >
-              <div className="flex items-center gap-3">
-                {item.icon}
-                <h4 className="text-lg font-semibold text-mist">
-                  {item.title}
-                </h4>
-              </div>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                {item.desc}
-              </p>
-              <button className="mt-2 px-5 py-2 text-sm font-medium text-mist bg-tide hover:bg-tide rounded-full transition">
-                {item.btn}
-              </button>
-            </motion.div>
+        </div>
+        <dl className="space-y-4">
+          {SALURAN.map((s) => (
+            <div key={s.label} className="card-soft p-6">
+              <dt className="micro text-tide">{s.label}</dt>
+              <dd className="mt-2 font-[family-name:var(--font-display)] text-2xl text-mist">
+                {s.href ? <a href={s.href} className="break-all hover:text-tide">{s.nilai}</a> : s.nilai}
+              </dd>
+              <dd className="mt-1 text-sm text-haze">{s.ket}</dd>
+            </div>
           ))}
-        </div>
-
-        {/* ⏱️ Footer Info */}
-        <div className="text-center mt-24">
-          <div className="inline-flex items-center gap-2 text-slate-500 text-sm">
-            <Clock className="w-4 h-4 text-tide" />
-            <span>Waktu respons rata-rata: 1–4 jam (chat), 6–12 jam (email)</span>
-          </div>
-        </div>
+        </dl>
       </div>
     </section>
   )

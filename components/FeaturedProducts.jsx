@@ -1,82 +1,38 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { PRODUK, rupiah, situasiDari } from '@/lib/katalog'
 
-const featured = [
-  {
-    title: 'Velvet Pulse',
-    desc: 'Stimulator dengan 10 mode getaran, lembut dan powerful. Cocok untuk pemula & pasangan.',
-    image: '/images/p2.jpg',
-    href: '/produk',
-  },
-  {
-    title: 'Sora Essentials Kit',
-    desc: 'Paket eksplorasi awal dengan pelumas, massage oil, dan toy cleaner. Praktis & stylish.',
-    image: '/images/p3.jpg',
-    href: '/produk',
-  },
-  {
-    title: 'Moonlite Touch',
-    desc: 'Massager berdesain elegan untuk momen me-time atau sesi intim bersama.',
-    image: '/images/p4.jpg',
-    href: '/produk',
-  },
-]
-
-export default function FeaturedProductSection() {
+/* Tiga barang pilihan, masing-masing dengan kalimat pembukanya — bukan
+   daftar fitur. Dulu nama & fotonya tidak cocok dengan barangnya. */
+export default function FeaturedProducts() {
+  const unggulan = PRODUK.filter((p) => p.unggulan).slice(0, 3)
   return (
-    <section className="bg-deep-2 px-6 py-28 md:px-20 text-mist border-t border-mist/12">
-      <div className="max-w-7xl mx-auto space-y-16">
-
-        {/* 🌟 Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl font-serif text-mist">
-            Pilihan Unggulan
-          </h2>
-          <p className="mt-4 text-slate-600 text-lg">
-            Produk favorit dari pelanggan kami — aman, edukatif, dan menyenangkan.
-          </p>
-        </motion.div>
-
-        {/* 🛍️ Product Cards */}
-        <div className="grid md:grid-cols-3 gap-10">
-          {featured.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-tide/10 hover:bg-tide/15 transition rounded-xl overflow-hidden shadow-sm border border-tide/25"
-            >
-              <Link href={item.href}>
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5 space-y-2">
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="text-sm text-slate-700">{item.desc}</p>
-                  <span className="inline-block mt-2 text-tide text-sm font-medium">
-                    Lihat Detail →
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+    <section id="produk" aria-labelledby="produk-judul" className="border-t border-mist/10 bg-deep py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-xl">
+          <p className="micro mb-5 text-tide">Pilihan</p>
+          <h2 id="produk-judul" className="text-[2.1rem] leading-[1.12] md:text-[2.9rem]">Tiga barang, tiga kalimat pembuka</h2>
         </div>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {unggulan.map((p) => (
+            <li key={p.slug}>
+              <article className="card-soft group relative flex h-full flex-col overflow-hidden">
+                <div className="relative aspect-[4/3]">
+                  <Image src={p.image} alt={p.nama} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="micro text-haze">{situasiDari(p.situasi).label}</p>
+                  <h3 className="mt-2 text-2xl">
+                    <Link href={`/produk/${p.slug}`} className="after:absolute after:inset-0">{p.nama}</Link>
+                  </h3>
+                  <p className="mt-4 flex-1 rounded-2xl rounded-bl-sm bg-tide/15 px-4 py-3 text-sm text-mist">{p.obrolan[0]}</p>
+                  <p className="mt-5 font-semibold text-mist">{rupiah(p.harga)}</p>
+                </div>
+              </article>
+            </li>
+          ))}
+        </ul>
+        <p className="micro mt-8 leading-[1.7] text-haze">Nama dan harga adalah contoh untuk keperluan purwarupa desain.</p>
       </div>
     </section>
   )

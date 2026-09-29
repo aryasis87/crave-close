@@ -7,12 +7,14 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV = [
-  { label: 'Percakapan', href: '/#percakapan' },
-  { label: 'Koleksi', href: '/#produk' },
-  { label: 'Jaminan', href: '/#jaminan' },
+  { label: 'Percakapan', href: '/percakapan' },
+  { label: 'Koleksi', href: '/koleksi' },
+  { label: 'Obrolan', href: '/jurnal' },
   { label: 'Tanya Jawab', href: '/#tanya' },
   { label: 'Bantuan', href: '/#kontak' },
 ]
+
+const aktif = (pathname, href) => !href.startsWith('/#') && (pathname === href || pathname.startsWith(href + '/'))
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -56,7 +58,12 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="micro text-haze transition-colors hover:text-mist">
+            <Link
+              key={n.href}
+              href={n.href}
+              aria-current={aktif(pathname, n.href) ? 'page' : undefined}
+              className={`micro transition-colors hover:text-mist ${aktif(pathname, n.href) ? 'text-tide' : 'text-haze'}`}
+            >
               {n.label}
             </Link>
           ))}
@@ -99,7 +106,7 @@ export default function Navbar() {
               aria-label="Menu navigasi"
             >
               <div className="flex items-center justify-between border-b border-mist/10 px-6 py-4">
-                <span className="micro text-haze/60">Menu</span>
+                <span className="micro text-haze">Menu</span>
                 <button onClick={() => setOpen(false)} className="-mr-2 p-2 text-mist" aria-label="Tutup menu">
                   <X size={20} strokeWidth={1.75} />
                 </button>

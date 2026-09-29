@@ -36,7 +36,7 @@ export default function HeroSection() {
               Mulai Percakapan
             </Link>
             <Link
-              href="/#produk"
+              href="/koleksi"
               className="micro inline-flex items-center justify-center rounded-full border border-mist/25 px-8 py-4 text-mist transition-colors duration-300 hover:border-mist/55"
             >
               Lihat Koleksi
@@ -46,7 +46,7 @@ export default function HeroSection() {
           <dl className="mt-14 grid gap-7 border-t border-mist/12 pt-8 sm:grid-cols-3">
             {janji.map(([k, v]) => (
               <div key={k}>
-                <dt className="micro text-haze/55">{k}</dt>
+                <dt className="micro text-haze">{k}</dt>
                 <dd className="mt-2.5 text-sm font-semibold text-mist">{v}</dd>
               </div>
             ))}

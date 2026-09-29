@@ -1,78 +1,32 @@
-'use client'
+/* Cerita pembeli versi Close: bukan ulasan barang, melainkan apa yang berubah
+   dalam percakapan mereka. Tanpa bintang; nama disingkat. */
 
-import { motion } from 'framer-motion'
-import { Quote } from 'lucide-react'
-import Image from 'next/image'
-
-const testimonials = [
-  {
-    name: 'Andra & Livia',
-    avatar: '/users/andra-livia.jpg',
-    text: 'Awalnya ragu, tapi Positive Crave kasih pengalaman yang bukan cuma nyaman, tapi juga membuka komunikasi di hubungan kami.',
-    tag: 'Pasangan menikah 3 tahun',
-  },
-  {
-    name: 'Dion',
-    avatar: '/users/dion.jpg',
-    text: 'Produk dan panduannya sangat thoughtful. Bukan sekadar alat, tapi beneran membantu eksplorasi diri.',
-    tag: 'Pria, 28 tahun',
-  },
-  {
-    name: 'Sasha',
-    avatar: '/users/sasha.jpg',
-    text: 'Privasinya bikin nyaman banget. Barang datang tanpa label, dan kualitasnya premium!',
-    tag: 'Perempuan, 32 tahun',
-  },
+const CERITA = [
+  { kutip: 'Kami tidak langsung membeli apa-apa. Kami ambil satu kartu dari dek "Ringan" tiap Jumat malam. Tiga minggu kemudian, baru kami memesan.', nama: 'A. & R.', ket: 'Bersama 6 tahun' },
+  { kutip: 'Kata berhenti kami "jeruk". Kedengarannya konyol, tapi justru karena itu kami jadi berani mencoba hal yang dulu cuma dibayangkan.', nama: 'D. & S.', ket: 'Baru menikah' },
+  { kutip: 'Kami beda kota setahun ini. Yang paling membantu bukan alatnya, tapi pertanyaan "hal paling random hari ini apa?" setiap malam.', nama: 'M. & K.', ket: 'Jakarta–Makassar' },
 ]
 
-export default function TestimonialSection() {
+export default function TestimonialsCarousel() {
   return (
-    <section className="bg-deep-2 text-mist px-6 py-28 md:px-20 border-t border-mist/12">
-      <div className="max-w-6xl mx-auto space-y-16 text-center">
-
-        {/* 🧠 Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl font-serif">Apa Kata Mereka</h2>
-          <p className="mt-4 text-slate-600 text-lg">
-            Cerita nyata dari mereka yang menemukan kenyamanan dan koneksi baru lewat Positive Crave.
-          </p>
-        </motion.div>
-
-        {/* 💬 Testimonial Cards */}
-        <div className="grid md:grid-cols-3 gap-10 text-left">
-          {testimonials.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-tide/10 hover:bg-tide/15 transition rounded-2xl p-6 space-y-4 shadow-sm"
-            >
-              <Quote className="text-tide w-6 h-6" />
-              <p className="text-slate-700 text-sm leading-relaxed">“{item.text}”</p>
-              <div className="flex items-center gap-3 pt-3">
-                <Image
-                  src={item.avatar}
-                  alt={item.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full object-cover border border-mist/25 shadow-md"
-                />
-                <div>
-                  <p className="text-sm font-semibold">{item.name}</p>
-                  <p className="text-xs text-tide">{item.tag}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+    <section aria-labelledby="cerita-judul" className="relative overflow-hidden bg-deep py-20 md:py-28">
+      <div aria-hidden="true" className="tide-glow absolute inset-0" />
+      <div className="relative mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-xl">
+          <p className="micro mb-5 text-tide">Dari pasangan</p>
+          <h2 id="cerita-judul" className="text-[2.1rem] leading-[1.12] md:text-[2.9rem]">Yang berubah biasanya percakapannya</h2>
         </div>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {CERITA.map((c) => (
+            <li key={c.nama} className="card-soft flex flex-col p-7">
+              <blockquote className="flex-1 font-[family-name:var(--font-display)] text-xl leading-snug text-mist">&ldquo;{c.kutip}&rdquo;</blockquote>
+              <p className="mt-6 border-t border-mist/10 pt-4 text-sm text-haze">
+                <span className="font-semibold text-mist">{c.nama}</span> · {c.ket}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p className="micro mt-8 leading-[1.7] text-haze">Nama disingkat atas permintaan. Kutipan adalah ilustrasi untuk keperluan purwarupa desain.</p>
       </div>
     </section>
   )

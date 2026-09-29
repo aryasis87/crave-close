@@ -4,15 +4,16 @@ const kolom = [
   {
     judul: 'Jelajahi',
     tautan: [
-      { label: 'Percakapan Pembuka', href: '/#percakapan' },
-      { label: 'Koleksi', href: '/#produk' },
-      { label: 'Produk Pilihan', href: '/produk' },
+      { label: 'Dek Percakapan', href: '/percakapan' },
+      { label: 'Koleksi', href: '/koleksi' },
+      { label: 'Saat berjauhan', href: '/koleksi#jauh' },
+      { label: 'Obrolan', href: '/jurnal' },
     ],
   },
   {
     judul: 'Ketenangan',
     tautan: [
-      { label: 'Jaminan Mutu', href: '/#jaminan' },
+      { label: 'Yang kami jamin', href: '/#jaminan' },
       { label: 'Tanya Jawab', href: '/#tanya' },
       { label: 'Bantuan', href: '/#kontak' },
     ],
@@ -21,6 +22,7 @@ const kolom = [
     judul: 'Akun',
     tautan: [
       { label: 'Masuk', href: '/masuk' },
+      { label: 'Buat Akun', href: '/register' },
       { label: 'Pemesanan', href: '/checkout' },
     ],
   },
@@ -60,8 +62,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-mist/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="micro text-haze/50">© {tahun} Positive Crave</p>
-          <p className="micro text-haze/50">Khusus dewasa 18+</p>
+          <p className="micro text-haze">© {tahun} Positive Crave</p>
+          <p className="micro text-haze">Khusus dewasa 18+</p>
         </div>
       </div>
     </footer>

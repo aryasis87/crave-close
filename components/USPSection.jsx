@@ -1,71 +1,31 @@
-'use client'
+/* Janji Close — hanya yang benar-benar ada di situs ini. Klaim lama seperti
+   "enkripsi end-to-end", "teruji dermatologis", dan "brand kelas dunia"
+   dibuang karena tidak ada yang bisa membuktikannya. */
 
-import { motion } from 'framer-motion'
-import { ShieldCheck, Sparkles, Globe, Leaf } from 'lucide-react'
-
-const uspList = [
-  {
-    icon: <ShieldCheck className="text-tide" size={28} />,
-    title: 'Privasi & Keamanan Terjamin',
-    desc: 'Pengemasan tanpa label, transaksi terenkripsi, dan pengalaman belanja yang benar-benar privat.',
-  },
-  {
-    icon: <Sparkles className="text-tide" size={28} />,
-    title: 'Panduan Interaktif',
-    desc: 'Setiap produk dilengkapi dengan panduan penggunaan digital dan edukasi hubungan yang suportif.',
-  },
-  {
-    icon: <Globe className="text-tide" size={28} />,
-    title: 'Kurasi Global',
-    desc: 'Kami hanya menghadirkan produk terpercaya, aman, dan didesain oleh brand intimacy kelas dunia.',
-  },
-  {
-    icon: <Leaf className="text-tide" size={28} />,
-    title: 'Aman & Ramah Tubuh',
-    desc: 'Bebas BPA, menggunakan bahan medical-grade, hypoallergenic, dan telah teruji secara dermatologis.',
-  },
+const JANJI = [
+  ['Kotak polos', 'Tanpa logo dan tanpa nama barang. Di resi tertulis "perlengkapan pribadi"; di mutasi rekening, nama perusahaan pengirim.'],
+  ['Silikon medical-grade', 'Tidak berpori dan bebas BPA, sehingga bisa dibersihkan tuntas. Spesifikasi tiap alat tercantum di halaman produknya.'],
+  ['Percakapan lebih dulu', 'Setiap barang datang dengan kalimat pembuka dan tiga kesepakatan kecil. Dek 24 kartu bisa dipakai gratis.'],
+  ['Dijawab manusia', 'Pertanyaan dijawab orang, bukan bot — tanpa dorongan untuk membeli yang lebih mahal.'],
 ]
 
 export default function USPSection() {
   return (
-    <section className="bg-deep-2 text-mist px-6 py-28 md:px-20 border-t border-mist/12">
-      <div className="max-w-7xl mx-auto text-center space-y-16">
-
-        {/* 🧠 Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl font-serif text-mist">
-            Kenapa Positive Crave?
-          </h2>
-          <p className="mt-4 text-slate-600 text-lg">
-            Kami percaya eksplorasi keintiman harus dimulai dari rasa aman, informasi yang tepat, dan produk yang berkualitas.
-          </p>
-        </motion.div>
-
-        {/* 🔹 USP Grid */}
-        <div className="grid md:grid-cols-2 gap-10">
-          {uspList.map((usp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex gap-5 items-start p-6 rounded-xl bg-tide/10 hover:bg-tide/15 transition duration-300"
-            >
-              <div className="shrink-0">{usp.icon}</div>
-              <div>
-                <h4 className="text-lg font-semibold mb-1">{usp.title}</h4>
-                <p className="text-sm text-slate-700 leading-relaxed">{usp.desc}</p>
-              </div>
-            </motion.div>
-          ))}
+    <section id="jaminan" aria-labelledby="jaminan-judul" className="bg-deep-2 py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-12 max-w-xl">
+          <p className="micro mb-5 text-tide">Yang kami jamin</p>
+          <h2 id="jaminan-judul" className="text-[2.1rem] leading-[1.12] md:text-[2.9rem]">Empat hal, semuanya bisa diperiksa</h2>
         </div>
+        <dl className="grid gap-px overflow-hidden rounded-2xl border border-mist/10 bg-mist/10 sm:grid-cols-2 lg:grid-cols-4">
+          {JANJI.map(([j, d], i) => (
+            <div key={j} className="bg-deep-2 p-7">
+              <p aria-hidden="true" className="font-[family-name:var(--font-display)] text-3xl text-tide">0{i + 1}</p>
+              <dt className="mt-4 font-[family-name:var(--font-display)] text-2xl text-mist">{j}</dt>
+              <dd className="mt-3 text-sm leading-relaxed text-haze">{d}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   )
