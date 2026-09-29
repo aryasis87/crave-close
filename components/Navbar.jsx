@@ -51,7 +51,7 @@ export default function Navbar() {
         <Link
           href="/"
           className="font-[family-name:var(--font-display)] text-xl text-mist"
-          aria-label="PositiveCrave — beranda"
+          aria-label="Positive Crave — beranda"
         >
           Positive <span className="text-tide italic">Crave</span>
         </Link>
