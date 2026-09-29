@@ -56,8 +56,8 @@ export default function HeroSection() {
         <figure className="relative">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-deep-2">
             <Image
-              src="/images/p16.jpeg"
-              alt="Dua orang tertidur berdampingan, tangan masih saling menggenggam"
+              src="/images/hero.webp"
+              alt="Siluet dua orang bergandengan di bawah langit biru senja"
               fill
               priority
               sizes="(min-width: 1024px) 42vw, 100vw"
